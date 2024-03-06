@@ -1,0 +1,81 @@
+﻿@model TestAPP.Models.Find.FindViewModel;
+
+@{
+    string emailPattern = "^[a-zA-Z0-9]+\\@[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+$";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        var errorMessage = "입력한 정보의 아이디를 찾을 수 없습니다.";
+        alert(errorMessage);
+    </script>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        var successMessage = "아이디는 @TempData["SuccessMessage"] 입니다.";
+        alert(successMessage);
+    </script>
+}
+
+<div class="row justify-content-center">
+    <div class="bg-white col-5 p-5">
+        <div class="row">
+            <div class="col h2 text-center mb-4">
+                아이디 찾기
+            </div>
+        </div>
+        <form class="needs-validation" novalidate action="/FindID" method="POST">
+            <div class="row">
+                <div class="col-4 mb-2">이름</div>
+                <div class="col-8 mb-2">
+                    <input type="name" class="form-control" asp-for="이름" placeholder="이름을 입력하세요." required>
+                    <div class="invalid-feedback">
+                        한글 또는 영문
+                    </div>
+                </div>
+                <div class="col-4 mb-2">이메일</div>
+                <div class="col-8 mb-2">
+                    <input type="email" class="form-control" asp-for="이메일" placeholder="이메일을 입력하세요." pattern=@emailPattern required>
+                    <div class="invalid-feedback">
+                        유효한 이메일 주소
+                    </div>
+                </div>
+                <div class="col-4 mb-2">전화번호</div>
+                <div class="col-8 mb-2">
+                    <input type="tel" class="form-control" asp-for="전화번호" placeholder="전화번호를 입력하세요." pattern="[0-9]{2,3}-[0-9]{4}-[0-9]{4}" required>
+                    <div class="invalid-feedback">
+                        구분 기호(-) 사용
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around mt-3">
+                <div class="col d-grid"><button class="btn btn-primary" type="submit">ID 찾기</button></div>
+                <div class="col d-grid"><a class="btn btn-secondary" href="/Login">취소</a></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>

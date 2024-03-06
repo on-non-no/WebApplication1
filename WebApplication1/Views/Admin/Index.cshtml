@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TestAPP.Models.Admin.AdminViewModel>
+
+@{
+    ViewData["Title"] = "로그인";
+}
+
+@{
+    int i = 0;
+    int j = 0;
+}
+<form>
+    <table>
+        @foreach (var 사용자 in Model)
+        {
+            <tr>
+                <td><input type="checkbox" name="checkbox_@(i)" /></td>
+                <td>@사용자.아이디</td>
+                <td>@사용자.비밀번호</td>
+                <td>@사용자.이메일</td>
+                <td>@사용자.이름</td>
+                <td>@사용자.소속</td>
+                <td>@사용자.생년월일</td>
+                <td>@사용자.전화번호</td>
+                <td>@사용자.계정권한들</td>
+            </tr>
+            i++;
+        }
+    </table>
+    <p>DELETE: <button type="submit" formaction="/Admin/Delete" formmethod="post">삭제</button></p>
+    <p>UPDATE: <button type="submit" formaction="/Admin/Update" formmethod="post" onclick="return validateForm()">수정</button></p>
+    <p>CREATE: <button type="submit" formaction="/Admin/Create" formmethod="post">생성</button></p>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" name="아이디" placeholder="아이디" />
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="비밀번호" placeholder="비밀번호" />
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="이메일" placeholder="이메일" />
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="이름" placeholder="이름" />
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="소속" placeholder="소속" />
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="생년월일" placeholder="생년월일" />
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="전화번호" placeholder="전화번호" />
+        </div>
+        <div class="col">
+            <select class="form-select" name="계정권한">
+                <option value="관리자">관리자</option>
+                <option value="연구자">연구자</option>
+                <option value="개발자">개발자</option>
+            </select>
+        </div>
+    </div>
+</form>
+<script>
+    function validateForm() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxes.length !== 1) {
+            alert("1개의 체크박스만 선택해야 합니다.");
+            return false;
+        }
+    }
+</script>

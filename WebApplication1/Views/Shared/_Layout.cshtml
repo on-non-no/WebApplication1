@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>통합 테스트베드 포털</title>
+    <link href="./css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="./js/bootstrap.bundle.js"></script>
+</head>
+<body>
+    <header>
+@*         <nav class="navbar navbar-expand-lg border-bottom">
+            <div class="container px-4">
+                <a class="navbar-brand">디지털 국토정보 기술개발 사업단<br><h6>Research Center For Digital Land Information</h6></a>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="">홈</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Admin">관리자</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav> *@
+        <nav class="border-bottom">
+            <div class="container d-flex justify-content-end">
+                <ul class="nav">
+                    <li class="nav-item"><a href="/Login" class="nav-link link-dark px-2">로그인</a></li>
+                    <li class="nav-item"><a href="/Register" class="nav-link link-dark px-2">회원가입</a></li>
+                    <li class="nav-item"><a href="/FindID" class="nav-link link-dark px-2">ID 찾기</a></li>
+                    <li class="nav-item"><a href="/FindPW" class="nav-link link-dark px-2">PW 찾기</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <ul class="nav justify-content-between d-flex align-items-end my-3">
+                <li>
+                    <img src="./image/그림1.png" height="40px">
+                </li>
+                <li>
+                    <img src="./image/logo_c.png" height="70px">
+                </li>
+                <li>
+                    <img src="./image/그림2.png" height="40px">
+                </li>
+            </ul>
+        </div>
+        <div class="py-2 bg-lx">
+            <div class="container">
+                <ul class="nav col-12 col-lg-auto justify-content-between fs-5 m-0">
+                    <li>
+                        <a href="/Admin" class="nav-link text-white">
+                            사용자 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            플랫폼 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            데이터 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            서비스 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            기타
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main role="main" class="py-3">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="justify-content-between align-items-center border-top">
+        <div class="container py-5">
+            <p class="col-md-8 text-muted">
+                한국국토정보공사 공간정보연구원
+                <br>
+                <strong>주소</strong> : 전라북도 완주군 이서면 지사제2로 42(용서리869)
+                <br>
+                <span class="pe-2 border-end">
+                    <strong>TEL</strong> : 063-710-0386, 0391
+                </span>
+                <span class="ps-2">
+                    <strong>FAX</strong> : 063-710-039
+                </span>
+                <br>
+                <br>
+                <strong>개인정보 처리 방침</strong>
+                <br>
+                COPYRIGHT Ⓒ Research Center For Digital Land Information ALL RIGHTS RESERVED.
+            </p>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

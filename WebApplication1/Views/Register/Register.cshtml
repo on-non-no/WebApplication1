@@ -1,0 +1,132 @@
+﻿@model TestAPP.Models.Register.RegisterViewModel;
+
+@{
+    string emailPattern = "^[a-zA-Z0-9]+\\@[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+$";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        var errorMessage = "아이디가 이미 사용 중입니다.";
+        alert(errorMessage);
+    </script>
+}
+
+@if (TempData["ErrorMessage1"] != null)
+{
+    <script>
+        var errorMessage1 = "개인정보 수집 동의 여부를 확인해주세요.";
+        alert(errorMessage1);
+    </script>
+}
+
+
+<div class="row justify-content-center">
+    <div class="bg-white col-5 p-5">
+        <div class="row">
+            <div class="col h2 text-center mb-4">
+                회원가입
+            </div>
+        </div>
+        <form class="needs-validation" novalidate action="/Register/Signin" method="POST">
+            <div class="row">
+                <div class="col-4 mb-2">아이디</div>
+                <div class="col-8 mb-2">
+                    <input type="text" class="form-control" asp-for="아이디" placeholder="아이디를 입력하세요." pattern="[a-zA-Z0-9]{4,20}" required>
+                    <div class="invalid-feedback">
+                        영문, 숫자 조합 4자 이상 20자 이하
+                    </div>
+                </div>
+                <div class="col-4 mb-2">비밀번호</div>
+                <div class="col-8 mb-2">
+                    <input type="password" class="form-control" asp-for="비밀번호" placeholder="비밀번호를 입력하세요." pattern="[a-zA-Z0-9!#$%^&*]{8,20}" required>
+                    <div class="invalid-feedback">
+                        영문, 숫자, 특수문자 조합 8자 이상 20자 이하
+                    </div>
+                </div>
+                <div class="col-4 mb-2">소속</div>
+                <div class="col-8 mb-2">
+                    <input type="name" class="form-control" asp-for="소속" placeholder="소속을 입력하세요." required>
+                    <div class="invalid-feedback">
+                        회원이 속한 조직, 기관, 회사 등
+                    </div>
+                </div>
+                <div class="col-4 mb-2">이름</div>
+                <div class="col-8 mb-2">
+                    <input type="name" class="form-control" asp-for="이름" placeholder="이름을 입력하세요." required>
+                    <div class="invalid-feedback">
+                        한글 또는 영문
+                    </div>
+                </div>
+                <div class="col-4 mb-2">이메일</div>
+                <div class="col-8 mb-2">
+                    <input type="email" class="form-control" asp-for="이메일" placeholder="이메일을 입력하세요." pattern=@emailPattern required>
+                    <div class="invalid-feedback">
+                        유효한 이메일 주소
+                    </div>
+                </div>
+                <div class="col-4 mb-2">생년월일</div>
+                <div class="col-8 mb-2">
+                    <input type="bir" class="form-control" asp-for="생년월일" placeholder="생년월일을 입력하세요." pattern="[0-9]{6}" required>
+                    <div class="invalid-feedback">
+                        생년월일 6자리 숫자
+                    </div>
+                </div>
+                <div class="col-4 mb-2">전화번호</div>
+                <div class="col-8 mb-2">
+                    <input type="tel" class="form-control" asp-for="전화번호" placeholder="전화번호를 입력하세요." pattern="[0-9]{2,3}-[0-9]{4}-[0-9]{4}" required>
+                    <div class="invalid-feedback">
+                        구분 기호(-) 사용
+                    </div>
+                </div>
+                <div class="col-4 mb-2">
+                    <input type="checkbox" class="btn-check" id="btn-check" name="checkbox" checked autocomplete="off">
+                    <label class="btn btn-primary text-center" for="btn-check">개인정보<br>수집 여부 동의</label>
+                </div>
+                <div class="col-8 mb-2 accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                개인정보 수집 및 이용 약관
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="overflow-y-auto" style="height: 100px;">
+                                    개인정보보호법에 따라 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및
+                                    이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니
+                                    자세히 읽은 후 동의하여 주시기 바랍니다.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around mt-3">
+                <div class="col d-grid"><button class="btn btn-primary" type="submit">회원가입</button></div>
+                <div class="col d-grid"><a class="btn btn-secondary" href="/Login">취소</a></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
